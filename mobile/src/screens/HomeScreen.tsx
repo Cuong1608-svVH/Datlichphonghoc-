@@ -170,7 +170,7 @@ export const HomeScreen: React.FC = () => {
             <View style={styles.searchBox}>
               <TextInput
                 style={styles.searchInput}
-                placeholder="🔍 Tìm theo tên hoặc mã phòng (P.101...)"
+                placeholder="Tìm theo tên hoặc mã phòng (P.101...)"
                 placeholderTextColor={theme.colors.textMuted}
                 value={searchQuery}
                 onChangeText={setSearchQuery}
@@ -211,7 +211,7 @@ export const HomeScreen: React.FC = () => {
                 onPress={() => setOnlyAvailable(!onlyAvailable)}
               >
                 <Text style={[styles.filterText, onlyAvailable && styles.filterTextGreen]}>
-                  {onlyAvailable ? '✓ Chỉ phòng trống' : 'Phòng trống'}
+                  {onlyAvailable ? 'Chỉ phòng trống' : 'Phòng trống'}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -264,11 +264,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
+    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
   },
   brandTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 20,
     fontWeight: '900',
   },
@@ -286,12 +287,12 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   liveOnline: {
-    backgroundColor: 'rgba(16, 185, 129, 0.15)',
-    borderColor: 'rgba(16, 185, 129, 0.4)',
+    backgroundColor: theme.colors.statusAvailableBg,
+    borderColor: 'rgba(5, 150, 105, 0.3)',
   },
   liveOffline: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)',
-    borderColor: 'rgba(239, 68, 68, 0.4)',
+    backgroundColor: theme.colors.statusBookedBg,
+    borderColor: 'rgba(220, 38, 38, 0.3)',
   },
   pulseDot: {
     width: 6,
@@ -299,20 +300,20 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
   dotGreen: {
-    backgroundColor: '#10B981',
+    backgroundColor: theme.colors.statusAvailable,
   },
   dotRed: {
-    backgroundColor: '#EF4444',
+    backgroundColor: theme.colors.statusBooked,
   },
   liveText: {
     fontSize: 11,
     fontWeight: '700',
   },
   textGreen: {
-    color: '#34D399',
+    color: theme.colors.statusAvailable,
   },
   textRed: {
-    color: '#F87171',
+    color: theme.colors.statusBooked,
   },
   listContent: {
     paddingBottom: 24,
@@ -322,11 +323,11 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   searchInput: {
-    backgroundColor: theme.colors.bgInput,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#CBD5E1',
     borderRadius: theme.radius.md,
-    color: '#FFFFFF',
+    color: '#0F172A',
     paddingHorizontal: 14,
     paddingVertical: 10,
     fontSize: 13,
@@ -342,16 +343,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 6,
     borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
     borderColor: theme.colors.border,
   },
   filterChipActive: {
     backgroundColor: theme.colors.primary,
-    borderColor: theme.colors.primaryLight,
+    borderColor: theme.colors.primaryDark,
   },
   filterChipGreen: {
-    backgroundColor: 'rgba(16, 185, 129, 0.2)',
+    backgroundColor: theme.colors.statusAvailableBg,
     borderColor: theme.colors.statusAvailable,
   },
   filterText: {
@@ -363,7 +364,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   filterTextGreen: {
-    color: '#34D399',
+    color: theme.colors.statusAvailable,
   },
   sectionHeader: {
     flexDirection: 'row',
@@ -374,14 +375,14 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   sectionTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 16,
     fontWeight: '800',
   },
   sectionSubtitle: {
-    color: theme.colors.primaryLight,
+    color: theme.colors.primary,
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   centerBox: {
     alignItems: 'center',
@@ -395,7 +396,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   emptyTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 16,
     fontWeight: '700',
   },

@@ -90,15 +90,21 @@ export const RoomCard: React.FC<RoomCardProps> = ({ room, onBook, selectedSlotNa
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#FFFFFF',
     borderRadius: theme.radius.lg,
     overflow: 'hidden',
     borderWidth: 1,
     borderColor: theme.colors.border,
     marginBottom: 16,
+    elevation: 2,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
   },
   cardDisabled: {
-    opacity: 0.8,
+    opacity: 0.85,
+    backgroundColor: '#F8FAFC',
   },
   imageContainer: {
     height: 180,
@@ -113,13 +119,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 12,
     left: 12,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: theme.radius.sm,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   codeText: {
-    color: '#FFFFFF',
+    color: '#0F172A',
     fontSize: 11,
     fontWeight: '800',
   },
@@ -146,13 +154,15 @@ const styles = StyleSheet.create({
     gap: 6,
   },
   tag: {
-    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     paddingHorizontal: 8,
     paddingVertical: 3,
     borderRadius: theme.radius.sm,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   tagText: {
-    color: '#E2E8F0',
+    color: '#334155',
     fontSize: 11,
     fontWeight: '600',
   },
@@ -174,7 +184,9 @@ const styles = StyleSheet.create({
   slotRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    backgroundColor: '#F8FAFC',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
     padding: 8,
     borderRadius: theme.radius.sm,
     marginBottom: 12,
@@ -182,6 +194,7 @@ const styles = StyleSheet.create({
   slotLabel: {
     color: theme.colors.textMuted,
     fontSize: 12,
+    fontWeight: '600',
   },
   slotValue: {
     color: theme.colors.textPrimary,
@@ -193,6 +206,8 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: theme.radius.sm,
     marginBottom: 12,
+    borderWidth: 1,
+    borderColor: 'rgba(239, 68, 68, 0.2)',
   },
   bookedByText: {
     color: theme.colors.statusBooked,
@@ -214,7 +229,9 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   btnDisabled: {
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: '#F1F5F9',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   btnTextDisabled: {
     color: theme.colors.textMuted,

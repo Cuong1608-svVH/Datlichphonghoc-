@@ -96,9 +96,9 @@ export const AdminDashboardPage: React.FC = () => {
 
   if (!isAdmin) {
     return (
-      <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', maxWidth: '600px', margin: '4rem auto' }}>
-        <Shield size={48} color="#ef4444" style={{ margin: '0 auto 1rem' }} />
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Truy Cập Bị Từ Chối</h2>
+      <div className="glass-panel" style={{ padding: '3rem', textAlign: 'center', maxWidth: '600px', margin: '4rem auto', backgroundColor: '#ffffff' }}>
+        <Shield size={48} color="var(--status-booked)" style={{ margin: '0 auto 1rem' }} />
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>Truy Cập Bị Từ Chối</h2>
         <p style={{ color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
           Bạn cần đăng nhập bằng tài khoản Quản trị viên (Admin) để truy cập bảng điều khiển này.
         </p>
@@ -112,7 +112,7 @@ export const AdminDashboardPage: React.FC = () => {
     setFormCode('');
     setFormFloor(1);
     setFormCapacity(6);
-    setFormImageUrl('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80');
+    setFormImageUrl('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80');
     setFormDescription('');
     setFormStatus('AVAILABLE');
     setFormError(null);
@@ -161,7 +161,7 @@ export const AdminDashboardPage: React.FC = () => {
       } else {
         setFormError(res.message || 'Thao tác không thành công');
       }
-    } catch (err) {
+    } catch {
       setFormError('Lỗi kết nối máy chủ');
     }
   };
@@ -189,7 +189,7 @@ export const AdminDashboardPage: React.FC = () => {
       } else {
         alert(res.message || 'Không thể xóa phòng này');
       }
-    } catch (err) {
+    } catch {
       alert('Lỗi kết nối máy chủ');
     }
   };
@@ -205,7 +205,7 @@ export const AdminDashboardPage: React.FC = () => {
       } else {
         alert(res.message || 'Không thể hủy lịch đặt này');
       }
-    } catch (err) {
+    } catch {
       alert('Lỗi kết nối máy chủ');
     }
   };
@@ -213,13 +213,13 @@ export const AdminDashboardPage: React.FC = () => {
   return (
     <div>
       {/* Header */}
-      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem' }}>
+      <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem', backgroundColor: '#ffffff' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#f472b6', fontWeight: 700, fontSize: '0.8rem', textTransform: 'uppercase' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#7c3aed', fontWeight: 800, fontSize: '0.8rem', textTransform: 'uppercase' }}>
               <Shield size={16} /> BẢNG ĐIỀU KHIỂN QUẢN TRỊ VIÊN
             </div>
-            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, marginTop: '4px', color: '#ffffff' }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, marginTop: '4px', color: 'var(--text-primary)' }}>
               Quản Trị Thư Viện & Phòng Học
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: '4px' }}>
@@ -254,40 +254,40 @@ export const AdminDashboardPage: React.FC = () => {
             marginBottom: '2rem',
           }}
         >
-          <div className="glass-panel" style={{ padding: '1.25rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>TỔNG SỐ PHÒNG</div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#f8fafc', marginTop: '0.25rem' }}>
+          <div className="glass-panel" style={{ padding: '1.25rem', backgroundColor: '#ffffff' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700 }}>TỔNG SỐ PHÒNG</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '0.25rem' }}>
               {stats.rooms.total}
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '4px' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--status-available)', marginTop: '4px', fontWeight: 600 }}>
               {stats.rooms.available} phòng đang sẵn sàng
             </div>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.25rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>PHÒNG BẢO TRÌ</div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#fbbf24', marginTop: '0.25rem' }}>
+          <div className="glass-panel" style={{ padding: '1.25rem', backgroundColor: '#ffffff' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700 }}>PHÒNG BẢO TRÌ</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: 'var(--status-maintenance)', marginTop: '0.25rem' }}>
               {stats.rooms.maintenance}
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>Đang tạm ngưng nhận lịch</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>Đang tạm ngưng nhận lịch</div>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.25rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>LƯỢT ĐẶT HÔM NAY</div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#818cf8', marginTop: '0.25rem' }}>
+          <div className="glass-panel" style={{ padding: '1.25rem', backgroundColor: '#ffffff' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700 }}>LƯỢT ĐẶT HÔM NAY</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#2563eb', marginTop: '0.25rem' }}>
               {stats.today.total}
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#34d399', marginTop: '4px' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--status-available)', marginTop: '4px', fontWeight: 600 }}>
               {stats.today.confirmed} thành công • {stats.today.cancelled} đã hủy
             </div>
           </div>
 
-          <div className="glass-panel" style={{ padding: '1.25rem' }}>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>TỔNG LƯỢT ĐẶT TOÀN THỜI GIAN</div>
-            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ec4899', marginTop: '0.25rem' }}>
+          <div className="glass-panel" style={{ padding: '1.25rem', backgroundColor: '#ffffff' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700 }}>TỔNG LƯỢT ĐẶT TOÀN THỜI GIAN</div>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#7c3aed', marginTop: '0.25rem' }}>
               {stats.allTime.total}
             </div>
-            <div style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>
               {stats.allTime.confirmed} lượt học thành công
             </div>
           </div>
@@ -296,13 +296,13 @@ export const AdminDashboardPage: React.FC = () => {
 
       {/* Tab 1: Room Management */}
       {activeAdminTab === 'rooms' && (
-        <div className="glass-panel" style={{ padding: '2rem' }}>
+        <div className="glass-panel" style={{ padding: '2rem', backgroundColor: '#ffffff' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 Danh Sách Phòng Học Hiện Có
               </h2>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 Thêm mới, sửa thông tin hoặc chuyển trạng thái bảo trì phòng
               </p>
             </div>
@@ -316,7 +316,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)' }}>
+                <tr style={{ borderBottom: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--text-secondary)' }}>
                   <th style={{ padding: '0.75rem 1rem' }}>Phòng học</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Vị trí</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Sức chứa</th>
@@ -329,7 +329,7 @@ export const AdminDashboardPage: React.FC = () => {
                   <tr
                     key={room.id}
                     style={{
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                      borderBottom: '1px solid #f1f5f9',
                       transition: 'background 0.2s',
                     }}
                   >
@@ -341,8 +341,8 @@ export const AdminDashboardPage: React.FC = () => {
                           style={{ width: '56px', height: '42px', borderRadius: '6px', objectFit: 'cover' }}
                         />
                         <div>
-                          <div style={{ fontWeight: 700, color: '#f8fafc' }}>{room.name}</div>
-                          <div style={{ fontSize: '0.75rem', color: '#818cf8', fontWeight: 600 }}>{room.code}</div>
+                          <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{room.name}</div>
+                          <div style={{ fontSize: '0.75rem', color: '#2563eb', fontWeight: 700 }}>{room.code}</div>
                         </div>
                       </div>
                     </td>
@@ -370,7 +370,7 @@ export const AdminDashboardPage: React.FC = () => {
                           className="btn btn-secondary btn-sm"
                           title="Bật/Tắt bảo trì"
                         >
-                          <Power size={14} color={room.status === 'AVAILABLE' ? '#fbbf24' : '#34d399'} />
+                          <Power size={14} color={room.status === 'AVAILABLE' ? '#d97706' : '#059669'} />
                         </button>
                         <button
                           onClick={() => openEditModal(room)}
@@ -398,13 +398,13 @@ export const AdminDashboardPage: React.FC = () => {
 
       {/* Tab 2: All Bookings Management */}
       {activeAdminTab === 'bookings' && (
-        <div className="glass-panel" style={{ padding: '2rem' }}>
+        <div className="glass-panel" style={{ padding: '2rem', backgroundColor: '#ffffff' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
             <div>
-              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 Danh Sách Tất Cả Lịch Đặt Phòng
               </h2>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                 Giám sát sinh viên đặt phòng, lọc theo ngày và can thiệp hủy phòng khi cần
               </p>
             </div>
@@ -421,7 +421,8 @@ export const AdminDashboardPage: React.FC = () => {
               gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
               gap: '1rem',
               marginBottom: '1.5rem',
-              background: 'rgba(15, 23, 42, 0.4)',
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
               padding: '1rem',
               borderRadius: 'var(--radius-md)',
             }}
@@ -468,7 +469,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.875rem' }}>
               <thead>
-                <tr style={{ borderBottom: '1px solid var(--border-subtle)', color: 'var(--text-muted)' }}>
+                <tr style={{ borderBottom: '1px solid #e2e8f0', background: '#f8fafc', color: 'var(--text-secondary)' }}>
                   <th style={{ padding: '0.75rem 1rem' }}>Sinh viên</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Phòng</th>
                   <th style={{ padding: '0.75rem 1rem' }}>Thời gian học</th>
@@ -482,24 +483,24 @@ export const AdminDashboardPage: React.FC = () => {
                   <tr
                     key={b.id}
                     style={{
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                      borderBottom: '1px solid #f1f5f9',
                     }}
                   >
                     <td style={{ padding: '1rem' }}>
-                      <div style={{ fontWeight: 700, color: '#ffffff' }}>{b.user_name}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>
+                      <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{b.user_name}</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                         {b.student_id ? `MSSV: ${b.student_id} • ` : ''}{b.user_email}
                       </div>
                     </td>
                     <td style={{ padding: '1rem' }}>
-                      <div style={{ fontWeight: 600, color: '#c7d2fe' }}>{b.room_name}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#94a3b8' }}>{b.room_code} (Tầng {b.floor})</div>
+                      <div style={{ fontWeight: 700, color: '#2563eb' }}>{b.room_name}</div>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{b.room_code} (Tầng {b.floor})</div>
                     </td>
                     <td style={{ padding: '1rem' }}>
-                      <div style={{ fontWeight: 600, color: '#34d399' }}>{b.booking_date}</div>
-                      <div style={{ fontSize: '0.75rem', color: '#818cf8' }}>{b.slot_name}</div>
+                      <div style={{ fontWeight: 700, color: 'var(--status-available)' }}>{b.booking_date}</div>
+                      <div style={{ fontSize: '0.75rem', color: '#2563eb' }}>{b.slot_name}</div>
                     </td>
-                    <td style={{ padding: '1rem', color: '#cbd5e1', maxWidth: '200px' }}>
+                    <td style={{ padding: '1rem', color: 'var(--text-secondary)', maxWidth: '200px' }}>
                       {b.notes || <span style={{ color: 'var(--text-muted)' }}>-</span>}
                     </td>
                     <td style={{ padding: '1rem' }}>
@@ -537,7 +538,7 @@ export const AdminDashboardPage: React.FC = () => {
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
-            style={{ padding: '2rem', maxWidth: '540px' }}
+            style={{ padding: '2rem', maxWidth: '540px', backgroundColor: '#ffffff' }}
           >
             <button
               onClick={() => setRoomModalOpen(false)}
@@ -545,7 +546,7 @@ export const AdminDashboardPage: React.FC = () => {
                 position: 'absolute',
                 top: '1.25rem',
                 right: '1.25rem',
-                background: 'rgba(255, 255, 255, 0.08)',
+                background: '#f1f5f9',
                 border: 'none',
                 borderRadius: '50%',
                 width: '32px',
@@ -560,7 +561,7 @@ export const AdminDashboardPage: React.FC = () => {
               <X size={16} />
             </button>
 
-            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.25rem' }}>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '1.25rem', color: 'var(--text-primary)' }}>
               {editingRoom ? 'Chỉnh Sửa Phòng Học' : 'Thêm Phòng Học Mới'}
             </h2>
 
@@ -569,10 +570,12 @@ export const AdminDashboardPage: React.FC = () => {
                 style={{
                   padding: '0.75rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  color: '#fca5a5',
+                  background: 'var(--status-booked-bg)',
+                  border: '1px solid var(--status-booked-border)',
+                  color: 'var(--status-booked)',
                   fontSize: '0.85rem',
                   marginBottom: '1rem',
+                  fontWeight: 600,
                 }}
               >
                 {formError}
@@ -689,28 +692,29 @@ export const AdminDashboardPage: React.FC = () => {
           <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
-            style={{ padding: '2rem', maxWidth: '480px' }}
+            style={{ padding: '2rem', maxWidth: '480px', backgroundColor: '#ffffff' }}
           >
             <div style={{ textAlign: 'center', marginBottom: '1.25rem' }}>
-              <AlertTriangle size={36} color="#ef4444" style={{ margin: '0 auto 0.75rem' }} />
-              <h2 style={{ fontSize: '1.35rem', fontWeight: 800 }}>Admin Hủy Lịch Đặt Phòng</h2>
+              <AlertTriangle size={36} color="var(--status-booked)" style={{ margin: '0 auto 0.75rem' }} />
+              <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>Admin Hủy Lịch Đặt Phòng</h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-                Bạn đang sử dụng quyền Quản trị viên để hủy lịch đặt của sinh viên:
+                Bạn đang sử dụng quyền Quản trị viên để can thiệp hủy lịch đặt của sinh viên:
               </p>
             </div>
 
             <div
               style={{
-                background: 'rgba(255, 255, 255, 0.04)',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 padding: '1rem',
                 borderRadius: 'var(--radius-md)',
                 fontSize: '0.875rem',
                 marginBottom: '1.5rem',
               }}
             >
-              <div>Sinh viên: <strong>{adminCancelModal.user_name}</strong></div>
-              <div>Phòng: <strong>{adminCancelModal.room_name}</strong> ({adminCancelModal.room_code})</div>
-              <div>Ngày: <strong>{adminCancelModal.booking_date}</strong> - {adminCancelModal.slot_name}</div>
+              <div>Sinh viên: <strong style={{ color: 'var(--text-primary)' }}>{adminCancelModal.user_name}</strong></div>
+              <div>Phòng: <strong style={{ color: 'var(--text-primary)' }}>{adminCancelModal.room_name}</strong> ({adminCancelModal.room_code})</div>
+              <div>Ngày: <strong style={{ color: 'var(--text-primary)' }}>{adminCancelModal.booking_date}</strong> - {adminCancelModal.slot_name}</div>
             </div>
 
             <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'flex-end' }}>

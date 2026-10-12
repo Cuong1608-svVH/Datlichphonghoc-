@@ -19,7 +19,7 @@ export const ToastNotification: React.FC = () => {
         gap: '0.75rem',
         maxWidth: '380px',
         width: '100%',
-        pointerEvents: 'none'
+        pointerEvents: 'none',
       }}
     >
       {liveNotifications.map((n) => (
@@ -30,14 +30,14 @@ export const ToastNotification: React.FC = () => {
             pointerEvents: 'auto',
             padding: '0.85rem 1rem',
             borderRadius: 'var(--radius-md)',
-            background: n.type === 'warning' ? 'rgba(30, 27, 75, 0.9)' : 'rgba(6, 78, 59, 0.9)',
-            border: `1px solid ${n.type === 'warning' ? 'rgba(129, 140, 248, 0.4)' : 'rgba(52, 211, 153, 0.4)'}`,
+            background: '#ffffff',
+            border: `1.5px solid ${n.type === 'warning' ? '#fde68a' : '#a7f3d0'}`,
             boxShadow: 'var(--shadow-lg)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: '0.75rem',
-            animation: 'scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+            animation: 'scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
@@ -46,20 +46,28 @@ export const ToastNotification: React.FC = () => {
                 width: '32px',
                 height: '32px',
                 borderRadius: '8px',
-                background: n.type === 'warning' ? 'rgba(99, 102, 241, 0.3)' : 'rgba(16, 185, 129, 0.3)',
+                background: n.type === 'warning' ? '#fffbeb' : '#ecfdf5',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                flexShrink: 0
+                flexShrink: 0,
               }}
             >
-              <Zap size={18} color={n.type === 'warning' ? '#818cf8' : '#34d399'} />
+              <Zap size={18} color={n.type === 'warning' ? '#d97706' : '#059669'} />
             </div>
             <div>
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#f8fafc', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <div
+                style={{
+                  fontSize: '0.75rem',
+                  fontWeight: 800,
+                  color: n.type === 'warning' ? '#b45309' : '#047857',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
+                }}
+              >
                 Đồng bộ Realtime
               </div>
-              <div style={{ fontSize: '0.825rem', color: '#e2e8f0', lineHeight: 1.3, marginTop: '2px' }}>
+              <div style={{ fontSize: '0.825rem', color: 'var(--text-primary)', lineHeight: 1.35, marginTop: '2px', fontWeight: 600 }}>
                 {n.text}
               </div>
             </div>
@@ -70,10 +78,10 @@ export const ToastNotification: React.FC = () => {
             style={{
               background: 'transparent',
               border: 'none',
-              color: '#94a3b8',
+              color: 'var(--text-muted)',
               cursor: 'pointer',
               padding: '4px',
-              display: 'flex'
+              display: 'flex',
             }}
           >
             <X size={16} />

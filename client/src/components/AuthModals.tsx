@@ -77,7 +77,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: '2rem', maxWidth: '460px' }}
+        style={{ padding: '2rem', maxWidth: '460px', backgroundColor: '#ffffff' }}
       >
         <button
           onClick={onClose}
@@ -85,7 +85,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
             position: 'absolute',
             top: '1.25rem',
             right: '1.25rem',
-            background: 'rgba(255, 255, 255, 0.08)',
+            background: '#f1f5f9',
             border: 'none',
             borderRadius: '50%',
             width: '32px',
@@ -95,7 +95,10 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
             justifyContent: 'center',
             color: 'var(--text-secondary)',
             cursor: 'pointer',
+            transition: 'background 0.2s',
           }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = '#e2e8f0')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = '#f1f5f9')}
         >
           <X size={16} />
         </button>
@@ -114,12 +117,14 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem',
-                  boxShadow: '0 0 20px rgba(99, 102, 241, 0.4)',
+                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.25)',
                 }}
               >
                 <Lock size={22} color="#ffffff" />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>Đăng Nhập Hệ Thống</h2>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                Đăng Nhập Hệ Thống
+              </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '4px' }}>
                 Đăng nhập để đặt phòng và theo dõi lịch sử
               </p>
@@ -130,14 +135,15 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                 style={{
                   padding: '0.7rem 0.9rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  color: '#fca5a5',
+                  background: 'var(--status-booked-bg)',
+                  border: '1px solid var(--status-booked-border)',
+                  color: 'var(--status-booked)',
                   fontSize: '0.85rem',
                   marginBottom: '1.25rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
+                  fontWeight: 600,
                 }}
               >
                 <AlertCircle size={16} />
@@ -148,7 +154,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
             <form onSubmit={handleLoginSubmit}>
               <div className="form-group" style={{ marginBottom: '1rem' }}>
                 <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Mail size={14} /> Email
+                  <Mail size={14} color="#2563eb" /> Email
                 </label>
                 <input
                   type="email"
@@ -162,7 +168,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
 
               <div className="form-group" style={{ marginBottom: '1.5rem' }}>
                 <label className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                  <Lock size={14} /> Mật khẩu
+                  <Lock size={14} color="#2563eb" /> Mật khẩu
                 </label>
                 <input
                   type="password"
@@ -177,7 +183,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{ width: '100%', marginBottom: '1rem' }}
+                style={{ width: '100%', marginBottom: '1rem', fontWeight: 700 }}
                 disabled={loginLoading}
               >
                 {loginLoading ? 'Đang xác thực...' : 'Đăng Nhập'}
@@ -187,7 +193,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                 Chưa có tài khoản?{' '}
                 <span
                   onClick={onSwitchToRegister}
-                  style={{ color: '#818cf8', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}
+                  style={{ color: '#2563eb', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
                 >
                   Đăng ký ngay
                 </span>
@@ -203,17 +209,19 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                   width: '48px',
                   height: '48px',
                   borderRadius: '14px',
-                  background: 'var(--secondary-gradient)',
+                  background: 'var(--primary-gradient)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   margin: '0 auto 0.75rem',
-                  boxShadow: '0 0 20px rgba(45, 212, 191, 0.4)',
+                  boxShadow: '0 4px 12px rgba(37, 99, 235, 0.25)',
                 }}
               >
                 <UserIcon size={22} color="#ffffff" />
               </div>
-              <h2 style={{ fontSize: '1.4rem', fontWeight: 800 }}>Đăng Ký Tài Khoản</h2>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                Đăng Ký Tài Khoản
+              </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', marginTop: '4px' }}>
                 Tạo tài khoản sinh viên để bắt đầu đặt phòng học
               </p>
@@ -224,14 +232,15 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                 style={{
                   padding: '0.7rem 0.9rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  border: '1px solid rgba(239, 68, 68, 0.3)',
-                  color: '#fca5a5',
+                  background: 'var(--status-booked-bg)',
+                  border: '1px solid var(--status-booked-border)',
+                  color: 'var(--status-booked)',
                   fontSize: '0.85rem',
                   marginBottom: '1rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
+                  fontWeight: 600,
                 }}
               >
                 <AlertCircle size={16} />
@@ -313,7 +322,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
               <button
                 type="submit"
                 className="btn btn-primary"
-                style={{ width: '100%', marginBottom: '1rem' }}
+                style={{ width: '100%', marginBottom: '1rem', fontWeight: 700 }}
                 disabled={regLoading}
               >
                 {regLoading ? 'Đang tạo tài khoản...' : 'Hoàn Tất Đăng Ký'}
@@ -323,7 +332,7 @@ export const AuthModals: React.FC<AuthModalsProps> = ({
                 Đã có tài khoản?{' '}
                 <span
                   onClick={onSwitchToLogin}
-                  style={{ color: '#818cf8', fontWeight: 600, cursor: 'pointer', textDecoration: 'underline' }}
+                  style={{ color: '#2563eb', fontWeight: 700, cursor: 'pointer', textDecoration: 'underline' }}
                 >
                   Đăng nhập
                 </span>

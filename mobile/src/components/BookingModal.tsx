@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
+  Modal,
   View,
   Text,
-  Modal,
   TextInput,
   TouchableOpacity,
   StyleSheet,
@@ -41,9 +41,9 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
   if (!room || !slot) return null;
 
-  const handleBooking = async () => {
+  const handleConfirm = async () => {
     if (!user) {
-      Alert.alert('Chưa đăng nhập', 'Vui lòng đăng nhập để đặt phòng học.');
+      Alert.alert('Chưa đăng nhập', 'Vui lòng đăng nhập để tiến hành đặt phòng học');
       return;
     }
 
@@ -61,7 +61,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       if (res.success) {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         Alert.alert(
-          '🎉 Đặt Phòng Thành Công!',
+          'Đặt Phòng Thành Công!',
           `Bạn đã đặt thành công phòng ${room.name} vào ngày ${date} (${slot.name}).`,
           [{ text: 'OK', onPress: () => { onClose(); onSuccess(); } }]
         );
@@ -73,7 +73,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           Alert.alert('Không thể đặt phòng', res.message || 'Vui lòng thử lại');
         }
       }
-    } catch (err) {
+    } catch {
       Alert.alert('Lỗi kết nối', 'Không thể kết nối đến máy chủ backend');
     } finally {
       setLoading(false);
@@ -117,7 +117,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
             {/* Rules reminder */}
             <View style={styles.rulesBox}>
-              <Text style={styles.rulesTitle}>🛡️ Quy định phòng học:</Text>
+              <Text style={styles.rulesTitle}>Quy định phòng học:</Text>
               <Text style={styles.rulesText}>• Tối đa 3 ca học / sinh viên / ngày.</Text>
               <Text style={styles.rulesText}>• Chỉ được hủy phòng trước giờ học tối thiểu 3 tiếng.</Text>
             </View>
@@ -125,7 +125,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* Concurrency Conflict Alert */}
             {conflictError && (
               <View style={styles.conflictBox}>
-                <Text style={styles.conflictTitle}>⚠️ Xung đột đặt phòng (409 Conflict):</Text>
+                <Text style={styles.conflictTitle}>Xung đột đặt phòng (409 Conflict):</Text>
                 <Text style={styles.conflictText}>{conflictError}</Text>
               </View>
             )}
@@ -139,23 +139,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               value={notes}
               onChangeText={setNotes}
               multiline
-              numberOfLines={3}
             />
 
-            {/* Buttons */}
+            {/* Action Buttons */}
             <View style={styles.btnRow}>
               <TouchableOpacity style={styles.cancelBtn} onPress={onClose} disabled={loading}>
-                <Text style={styles.cancelBtnText}>Hủy</Text>
+                <Text style={styles.cancelBtnText}>Hủy bỏ</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.submitBtn, conflictError ? styles.btnDisabled : null]}
-                onPress={handleBooking}
-                disabled={loading || !!conflictError}
+                style={[styles.submitBtn, loading && styles.btnDisabled]}
+                onPress={handleConfirm}
+                disabled={loading}
               >
                 {loading ? (
                   <ActivityIndicator color="#FFFFFF" />
                 ) : (
-                  <Text style={styles.submitBtnText}>Xác Nhận Đặt</Text>
+                  <Text style={styles.submitBtnText}>Xác Nhận Đặt Chỗ</Text>
                 )}
               </TouchableOpacity>
             </View>
@@ -169,15 +168,17 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    backgroundColor: 'rgba(15, 23, 42, 0.45)',
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: theme.colors.bgSecondary,
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: theme.radius.xl,
     borderTopRightRadius: theme.radius.xl,
     padding: 20,
-    maxHeight: '85%',
+    maxHeight: '88%',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   header: {
     flexDirection: 'row',
@@ -186,44 +187,42 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: '800',
+    color: '#0F172A',
   },
   closeBtn: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 6,
+    borderRadius: theme.radius.full,
+    backgroundColor: '#F1F5F9',
   },
   closeBtnText: {
-    color: '#FFFFFF',
-    fontSize: 16,
+    color: '#475569',
+    fontSize: 15,
     fontWeight: 'bold',
   },
   detailCard: {
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#F8FAFC',
     padding: 14,
     borderRadius: theme.radius.md,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#E2E8F0',
     marginBottom: 12,
   },
   roomName: {
-    color: '#FFFFFF',
+    color: '#0F172A',
     fontSize: 16,
     fontWeight: '800',
   },
   roomCode: {
-    color: theme.colors.primaryLight,
+    color: theme.colors.primary,
     fontSize: 12,
+    fontWeight: '700',
     marginTop: 2,
   },
   divider: {
     height: 1,
-    backgroundColor: theme.colors.border,
+    backgroundColor: '#E2E8F0',
     marginVertical: 10,
   },
   infoRow: {
@@ -236,45 +235,45 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   infoValue: {
-    color: theme.colors.textPrimary,
+    color: '#0F172A',
     fontSize: 13,
     fontWeight: '700',
   },
   rulesBox: {
-    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+    backgroundColor: '#EFF6FF',
     borderWidth: 1,
-    borderColor: 'rgba(99, 102, 241, 0.3)',
+    borderColor: '#BFDBFE',
     borderRadius: theme.radius.md,
     padding: 12,
     marginBottom: 14,
   },
   rulesTitle: {
-    color: theme.colors.primaryLight,
+    color: '#1D4ED8',
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '800',
     marginBottom: 4,
   },
   rulesText: {
-    color: '#C7D2FE',
+    color: '#1E40AF',
     fontSize: 12,
     lineHeight: 18,
   },
   conflictBox: {
-    backgroundColor: theme.colors.statusBookedBg,
+    backgroundColor: '#FEF2F2',
     borderWidth: 1,
-    borderColor: theme.colors.statusBooked,
+    borderColor: '#FECACA',
     borderRadius: theme.radius.md,
     padding: 12,
     marginBottom: 14,
   },
   conflictTitle: {
-    color: theme.colors.statusBooked,
+    color: '#DC2626',
     fontSize: 13,
-    fontWeight: '700',
+    fontWeight: '800',
     marginBottom: 4,
   },
   conflictText: {
-    color: '#FECACA',
+    color: '#991B1B',
     fontSize: 12,
     lineHeight: 18,
   },
@@ -285,11 +284,11 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   input: {
-    backgroundColor: theme.colors.bgInput,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#CBD5E1',
     borderRadius: theme.radius.md,
-    color: '#FFFFFF',
+    color: '#0F172A',
     padding: 12,
     fontSize: 14,
     minHeight: 70,
@@ -306,11 +305,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 14,
     borderRadius: theme.radius.md,
-    backgroundColor: 'rgba(255, 255, 255, 0.08)',
+    backgroundColor: '#F1F5F9',
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   cancelBtnText: {
-    color: theme.colors.textPrimary,
+    color: '#475569',
     fontWeight: '700',
   },
   submitBtn: {

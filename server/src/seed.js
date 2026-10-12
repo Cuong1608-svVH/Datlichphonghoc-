@@ -83,8 +83,8 @@ function seed() {
         'R-101',
         1,
         4,
-        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
-        'Phòng nhỏ yên tĩnh, thích hợp học nhóm 2-4 người, trang bị bảng kính và ổ cắm tiện lợi.',
+        'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=80',
+        'Phòng nhỏ yên tĩnh tràn ngập ánh sáng tự nhiên, thích hợp học nhóm 2-4 người, trang bị bảng kính và cổng sạc nhanh.',
         'AVAILABLE'
       ],
       [
@@ -92,8 +92,8 @@ function seed() {
         'R-102',
         1,
         8,
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
-        'Phòng thiết kế mở, view sân trường thoáng đãng, bàn ghế module linh hoạt cho 6-8 người.',
+        'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=1000&q=80',
+        'Phòng thiết kế phong cách Nordic sáng sủa, view ban công xanh mát, bàn ghế module linh hoạt cho 6-8 người.',
         'AVAILABLE'
       ],
       [
@@ -101,8 +101,8 @@ function seed() {
         'R-103',
         1,
         6,
-        'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
-        'Trang bị hệ thống cách âm chuyên sâu, phù hợp luyện thuyết trình và phỏng vấn học bổng.',
+        'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=80',
+        'Không gian cách âm tiêu chuẩn, ánh sáng chuẩn bảo vệ mắt, trang bị màn hình chia sẻ không dây.',
         'AVAILABLE'
       ],
       [
@@ -110,8 +110,8 @@ function seed() {
         'R-201',
         2,
         16,
-        'https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=800&q=80',
-        'Phòng hội thảo lớn sức chứa 16 người, trang bị màn hình tương tác thông minh và micro hội nghị.',
+        'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=1000&q=80',
+        'Phòng hội thảo hiện đại sức chứa 16 người, trang bị màn hình tương tác thông minh và micro hội nghị không dây.',
         'AVAILABLE'
       ],
       [
@@ -119,8 +119,8 @@ function seed() {
         'R-202',
         2,
         10,
-        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80',
-        'Phòng chuyên sâu cho đồ án công nghệ, nhiều cổng mạng tốc độ cao và ánh sáng chuẩn công thái học.',
+        'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=80',
+        'Phòng chuyên sâu cho đồ án công nghệ, nhiều cổng mạng Gigabit và hệ thống bàn ghế công thái học cao cấp.',
         'AVAILABLE'
       ],
       [
@@ -128,8 +128,8 @@ function seed() {
         'R-203',
         2,
         4,
-        'https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80',
-        'Phòng nhỏ riêng tư cho 2-4 bạn sinh viên cần sự tập trung cao độ ôn thi hoặc làm bài tập nhóm.',
+        'https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=1000&q=80',
+        'Phòng thảo luận riêng tư, tông màu gỗ sáng thanh lịch cho 2-4 bạn sinh viên cần sự tập trung cao độ.',
         'AVAILABLE'
       ],
       [
@@ -137,8 +137,8 @@ function seed() {
         'R-301',
         3,
         24,
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80',
-        'Không gian siêu rộng sức chứa tới 24 người, thích hợp cho câu lạc bộ học thuật và workshop.',
+        'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=1000&q=80',
+        'Hội trường sinh viên ngập tràn ánh sáng với sức chứa 24 người, thích hợp cho câu lạc bộ học thuật và workshop.',
         'AVAILABLE'
       ],
       [
@@ -146,8 +146,8 @@ function seed() {
         'R-302',
         3,
         12,
-        'https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80',
-        'Phòng đang được nâng cấp hệ thống âm thanh vòm và máy chiếu 4K.',
+        'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1000&q=80',
+        'Phòng đang được trang bị hệ thống âm thanh vòm và màn hình 4K siêu nét phục vụ nghiên cứu đa phương tiện.',
         'MAINTENANCE'
       ],
     ];

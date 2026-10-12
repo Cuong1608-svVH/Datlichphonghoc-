@@ -16,7 +16,7 @@ function register(req, res) {
   }
 
   const passwordHash = bcrypt.hashSync(password, 10);
-  const defaultAvatar = `https://api.dicebear.com/7.x/bottts/svg?seed=${encodeURIComponent(name)}`;
+  const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name.trim())}&background=2563eb&color=fff&bold=true`;
 
   const result = db.prepare(`
     INSERT INTO users (name, email, password_hash, role, student_id, department, phone, avatar)

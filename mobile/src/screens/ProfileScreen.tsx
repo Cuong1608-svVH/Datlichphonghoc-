@@ -48,9 +48,9 @@ export const ProfileScreen: React.FC = () => {
     const res = await api.ping();
     setPingLoading(false);
     if (res.ok) {
-      setPingResult(`🟢 Kết nối tốt (${res.timeMs}ms)`);
+      setPingResult(`Kết nối tốt (${res.timeMs}ms)`);
     } else {
-      setPingResult(`🔴 Lỗi kết nối (${res.timeMs}ms): ${res.error}`);
+      setPingResult(`Lỗi kết nối (${res.timeMs}ms): ${res.error}`);
     }
   };
 
@@ -147,7 +147,7 @@ export const ProfileScreen: React.FC = () => {
           <View>
             <View style={styles.profileCard}>
               <Image
-                source={{ uri: user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${user.name}` }}
+                source={{ uri: user.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=2563eb&color=fff&bold=true` }}
                 style={styles.avatar}
               />
               <Text style={styles.userName}>{user.name}</Text>
@@ -326,7 +326,7 @@ export const ProfileScreen: React.FC = () => {
               </Text>
 
               {pingResult && (
-                <Text style={[styles.pingResultText, pingResult.includes('🟢') ? styles.pingSuccess : styles.pingError]}>
+                <Text style={[styles.pingResultText, pingResult.includes('tốt') ? styles.pingSuccess : styles.pingError]}>
                   {pingResult}
                 </Text>
               )}
@@ -336,7 +336,7 @@ export const ProfileScreen: React.FC = () => {
                 onPress={() => setShowConfig(!showConfig)}
               >
                 <Text style={styles.toggleConfigText}>
-                  {showConfig ? '▲ Thu gọn cấu hình' : '⚙️ Tùy chỉnh URL máy chủ'}
+                  {showConfig ? 'Thu gọn cấu hình' : 'Tùy chỉnh URL máy chủ'}
                 </Text>
               </TouchableOpacity>
 
@@ -380,13 +380,18 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
   },
   profileCard: {
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#FFFFFF',
     borderRadius: theme.radius.lg,
     padding: 20,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#E2E8F0',
     marginBottom: 16,
+    elevation: 2,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
   },
   avatar: {
     width: 80,
@@ -397,7 +402,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   userName: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 18,
     fontWeight: '800',
   },
@@ -499,27 +504,32 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   logoutBtn: {
-    backgroundColor: 'rgba(239, 68, 68, 0.15)',
+    backgroundColor: '#FEF2F2',
     borderWidth: 1,
-    borderColor: 'rgba(239, 68, 68, 0.4)',
+    borderColor: '#FECACA',
     paddingVertical: 12,
     borderRadius: theme.radius.md,
     alignItems: 'center',
   },
   logoutBtnText: {
-    color: '#FCA5A5',
+    color: '#DC2626',
     fontSize: 14,
     fontWeight: '700',
   },
   authCard: {
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#FFFFFF',
     borderRadius: theme.radius.lg,
     padding: 20,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#E2E8F0',
+    elevation: 2,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
   },
   authTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 18,
     fontWeight: '800',
     textAlign: 'center',
@@ -621,11 +631,11 @@ const styles = StyleSheet.create({
   },
   configBox: {
     marginTop: 10,
-    backgroundColor: theme.colors.bgSecondary,
+    backgroundColor: '#F8FAFC',
     padding: 10,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#E2E8F0',
   },
   configLabel: {
     color: theme.colors.textMuted,
@@ -633,13 +643,13 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   configInput: {
-    backgroundColor: theme.colors.bgPrimary,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#CBD5E1',
     borderRadius: 6,
     paddingHorizontal: 10,
     paddingVertical: 6,
-    color: '#FFFFFF',
+    color: '#0F172A',
     fontSize: 12,
     marginBottom: 8,
   },
@@ -659,13 +669,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   resetUrlBtn: {
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: '#F1F5F9',
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 6,
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
   },
   resetUrlBtnText: {
-    color: '#E2E8F0',
+    color: '#475569',
     fontSize: 11,
     fontWeight: '600',
   },

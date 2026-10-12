@@ -66,7 +66,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
           particleCount: 100,
           spread: 70,
           origin: { y: 0.6 },
-          colors: ['#6366f1', '#10b981', '#f59e0b', '#ec4899'],
+          colors: ['#2563eb', '#059669', '#d97706', '#ec4899'],
         });
         onBookingSuccess();
       } else {
@@ -75,7 +75,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
         }
         setErrorMsg(res.message || 'Không thể đặt phòng. Vui lòng thử lại.');
       }
-    } catch (err: any) {
+    } catch {
       setErrorMsg('Lỗi kết nối máy chủ. Vui lòng kiểm tra lại.');
     } finally {
       setIsSubmitting(false);
@@ -87,7 +87,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
-        style={{ padding: '2rem' }}
+        style={{ padding: '2rem', backgroundColor: '#ffffff' }}
       >
         {/* Close Button */}
         <button
@@ -96,7 +96,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             position: 'absolute',
             top: '1.25rem',
             right: '1.25rem',
-            background: 'rgba(255, 255, 255, 0.08)',
+            background: '#f1f5f9',
             border: 'none',
             borderRadius: '50%',
             width: '34px',
@@ -108,8 +108,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             cursor: 'pointer',
             transition: 'background 0.2s',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)')}
-          onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)')}
+          onMouseEnter={(e) => (e.currentTarget.style.background = '#e2e8f0')}
+          onMouseLeave={(e) => (e.currentTarget.style.background = '#f1f5f9')}
         >
           <X size={18} />
         </button>
@@ -122,8 +122,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 width: '72px',
                 height: '72px',
                 borderRadius: '50%',
-                background: 'rgba(16, 185, 129, 0.2)',
-                border: '2px solid rgba(16, 185, 129, 0.5)',
+                background: 'var(--status-available-bg)',
+                border: '2px solid var(--status-available-border)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -131,22 +131,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 animation: 'scaleUp 0.3s ease',
               }}
             >
-              <CheckCircle2 size={40} color="#10b981" />
+              <CheckCircle2 size={40} color="var(--status-available)" />
             </div>
 
-            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem', color: '#ffffff' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
               Đặt Phòng Thành Công!
             </h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: '1.5rem' }}>
-              Bạn đã giữ chỗ thành công cho <strong style={{ color: '#818cf8' }}>{room.name}</strong> vào ngày <strong>{date}</strong> ({slot.name}).
+              Bạn đã giữ chỗ thành công cho <strong style={{ color: '#2563eb' }}>{room.name}</strong> vào ngày <strong>{date}</strong> ({slot.name}).
             </p>
 
             <div
               style={{
-                background: 'rgba(255, 255, 255, 0.04)',
-                border: '1px solid var(--border-subtle)',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 borderRadius: 'var(--radius-md)',
-                padding: '1rem',
+                padding: '1.25rem',
                 textAlign: 'left',
                 fontSize: '0.875rem',
                 marginBottom: '1.75rem',
@@ -154,19 +154,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Mã phòng:</span>
-                <span style={{ fontWeight: 600 }}>{room.code}</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{room.code}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Vị trí:</span>
-                <span style={{ fontWeight: 600 }}>Tầng {room.floor}</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>Tầng {room.floor}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Khung giờ:</span>
-                <span style={{ fontWeight: 600 }}>{slot.start_time} - {slot.end_time}</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>{slot.start_time} - {slot.end_time}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Người đặt:</span>
-                <span style={{ fontWeight: 600, color: '#34d399' }}>{user?.name}</span>
+                <span style={{ fontWeight: 700, color: 'var(--status-available)' }}>{user?.name}</span>
               </div>
             </div>
 
@@ -194,7 +194,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   XÁC NHẬN ĐẶT PHÒNG
                 </span>
               </div>
-              <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#ffffff' }}>
+              <h2 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)' }}>
                 {room.name}
               </h2>
             </div>
@@ -206,8 +206,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 gap: '1rem',
                 padding: '1rem',
                 borderRadius: 'var(--radius-md)',
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid var(--border-subtle)',
+                background: '#f8fafc',
+                border: '1px solid #e2e8f0',
                 marginBottom: '1.5rem',
               }}
             >
@@ -218,19 +218,19 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               />
               <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.35rem', fontSize: '0.85rem' }}>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#94a3b8' }}>
-                    <Layers size={14} color="#818cf8" /> Tầng {room.floor}
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-secondary)' }}>
+                    <Layers size={14} color="#2563eb" /> Tầng {room.floor}
                   </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#94a3b8' }}>
-                    <Users size={14} color="#818cf8" /> {room.capacity} người
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-secondary)' }}>
+                    <Users size={14} color="#2563eb" /> {room.capacity} người
                   </span>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#e2e8f0', fontWeight: 600 }}>
-                    <Calendar size={14} color="#34d399" /> {date}
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                    <Calendar size={14} color="var(--status-available)" /> {date}
                   </span>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#e2e8f0', fontWeight: 600 }}>
-                    <Clock size={14} color="#34d399" /> {slot.name}
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: 'var(--text-primary)', fontWeight: 700 }}>
+                    <Clock size={14} color="var(--status-available)" /> {slot.name}
                   </span>
                 </div>
               </div>
@@ -241,15 +241,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               style={{
                 padding: '0.75rem 1rem',
                 borderRadius: 'var(--radius-md)',
-                background: 'rgba(99, 102, 241, 0.08)',
-                border: '1px solid rgba(99, 102, 241, 0.25)',
+                background: '#eff6ff',
+                border: '1px solid #bfdbfe',
                 fontSize: '0.8rem',
-                color: '#c7d2fe',
+                color: '#1e40af',
                 marginBottom: '1.5rem',
                 lineHeight: 1.5,
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, color: '#a5b4fc', marginBottom: '4px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 800, color: '#1d4ed8', marginBottom: '4px' }}>
                 <ShieldCheck size={16} /> Quy định đặt phòng:
               </div>
               <div>• 1 sinh viên được đăng ký <strong>tối đa 3 ca học / ngày</strong>.</div>
@@ -262,15 +262,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 style={{
                   padding: '1rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  border: '1px solid rgba(239, 68, 68, 0.4)',
-                  color: '#fca5a5',
+                  background: 'var(--status-booked-bg)',
+                  border: '1px solid var(--status-booked-border)',
+                  color: 'var(--status-booked)',
                   fontSize: '0.875rem',
                   marginBottom: '1.5rem',
                   animation: 'fadeIn 0.2s ease',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 700, color: '#f87171', marginBottom: '0.35rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, color: 'var(--status-booked)', marginBottom: '0.35rem' }}>
                   <AlertTriangle size={18} /> XUNG ĐỘT ĐẶT PHÒNG ĐỒNG THỜI (409 CONFLICT)
                 </div>
                 <div>{errorMsg}</div>
@@ -278,7 +278,6 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                   <button
                     onClick={onClose}
                     className="btn btn-secondary btn-sm"
-                    style={{ background: 'rgba(255, 255, 255, 0.1)' }}
                   >
                     Quay lại chọn phòng khác
                   </button>
@@ -292,14 +291,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 style={{
                   padding: '0.75rem 1rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(239, 68, 68, 0.15)',
-                  border: '1px solid rgba(239, 68, 68, 0.4)',
-                  color: '#fca5a5',
+                  background: 'var(--status-booked-bg)',
+                  border: '1px solid var(--status-booked-border)',
+                  color: 'var(--status-booked)',
                   fontSize: '0.85rem',
                   marginBottom: '1.25rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
+                  fontWeight: 600,
                 }}
               >
                 <AlertTriangle size={16} />

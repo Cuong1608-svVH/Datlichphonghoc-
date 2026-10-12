@@ -57,8 +57,8 @@ export const SocketProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       const notificationId = Math.random().toString(36).substring(7);
       const text =
         data.action === 'BOOKED'
-          ? `⚡ Phòng vừa được ${data.bookedBy || 'người dùng khác'} đặt thành công (Ca ${data.slotId}, ${data.bookingDate})`
-          : `✨ Một phòng vừa được nhả chỗ và sẵn sàng để đặt (Ca ${data.slotId}, ${data.bookingDate})`;
+          ? `Phòng vừa được ${data.bookedBy || 'người dùng khác'} đặt thành công (Ca ${data.slotId}, ${data.bookingDate})`
+          : `Một phòng vừa được nhả chỗ và sẵn sàng để đặt (Ca ${data.slotId}, ${data.bookingDate})`;
 
       setLiveNotifications((prev) => [
         {

@@ -153,10 +153,10 @@ export const HistoryScreen: React.FC = () => {
                 <Text style={styles.roomName}>{item.room_name}</Text>
                 <Text style={styles.roomCode}>{item.room_code} • Tầng {item.floor} • {item.capacity} chỗ</Text>
                 <Text style={styles.dateSlotText}>
-                  📅 {item.booking_date} • {item.slot_name}
+                  {item.booking_date} • {item.slot_name}
                 </Text>
                 <Text style={styles.timeRangeText}>
-                  ⏰ {item.start_time} - {item.end_time}
+                  {item.start_time} - {item.end_time}
                 </Text>
               </View>
             </View>
@@ -197,7 +197,7 @@ export const HistoryScreen: React.FC = () => {
                       )
                     }
                   >
-                    <Text style={styles.cancelDisabledText}>⚠️ Không thể hủy (&lt; 3 tiếng)</Text>
+                    <Text style={styles.cancelDisabledText}>Không thể hủy (&lt; 3 tiếng)</Text>
                   </TouchableOpacity>
                 )
               )}
@@ -229,11 +229,12 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 16,
     paddingVertical: 14,
+    backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderBottomColor: theme.colors.border,
   },
   headerTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 20,
     fontWeight: '900',
   },
@@ -244,7 +245,7 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     flexDirection: 'row',
-    backgroundColor: theme.colors.bgSecondary,
+    backgroundColor: '#F1F5F9',
     padding: 4,
     marginHorizontal: 16,
     marginVertical: 12,
@@ -273,12 +274,17 @@ const styles = StyleSheet.create({
     paddingBottom: 24,
   },
   bookingCard: {
-    backgroundColor: theme.colors.bgCard,
+    backgroundColor: '#FFFFFF',
     borderRadius: theme.radius.lg,
     padding: 14,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: '#E2E8F0',
     marginBottom: 12,
+    elevation: 2,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -294,14 +300,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   roomName: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 15,
     fontWeight: '800',
   },
   roomCode: {
-    color: theme.colors.primaryLight,
+    color: theme.colors.primary,
     fontSize: 11,
-    fontWeight: '600',
+    fontWeight: '700',
     marginTop: 2,
   },
   dateSlotText: {
@@ -316,7 +322,9 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   notesBox: {
-    backgroundColor: 'rgba(255, 255, 255, 0.03)',
+    backgroundColor: '#F8FAFC',
+    borderWidth: 1,
+    borderColor: '#E2E8F0',
     padding: 8,
     borderRadius: theme.radius.sm,
     marginTop: 10,
@@ -333,38 +341,40 @@ const styles = StyleSheet.create({
   },
   cancelBtn: {
     borderWidth: 1,
-    borderColor: 'rgba(239, 68, 68, 0.4)',
-    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+    borderColor: '#FECACA',
+    backgroundColor: '#FEF2F2',
     paddingHorizontal: 14,
     paddingVertical: 7,
     borderRadius: theme.radius.sm,
   },
   cancelBtnText: {
-    color: '#FCA5A5',
+    color: '#DC2626',
     fontSize: 12,
     fontWeight: '700',
   },
   cancelDisabledPill: {
     borderWidth: 1,
-    borderColor: 'rgba(245, 158, 11, 0.3)',
-    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+    borderColor: '#FDE68A',
+    backgroundColor: '#FFFBEB',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: theme.radius.sm,
   },
   cancelDisabledText: {
-    color: '#FBBF24',
+    color: '#B45309',
     fontSize: 11,
     fontWeight: '600',
   },
   badgeCompleted: {
-    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+    backgroundColor: '#EFF6FF',
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: theme.radius.full,
+    borderWidth: 1,
+    borderColor: '#BFDBFE',
   },
   badgeCompletedText: {
-    color: theme.colors.primaryLight,
+    color: '#1D4ED8',
     fontSize: 11,
     fontWeight: '600',
   },
@@ -373,6 +383,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: theme.radius.full,
+    borderWidth: 1,
+    borderColor: 'rgba(220, 38, 38, 0.2)',
   },
   badgeCancelledText: {
     color: theme.colors.statusBooked,
@@ -386,7 +398,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   emptyTitle: {
-    color: '#FFFFFF',
+    color: theme.colors.textPrimary,
     fontSize: 16,
     fontWeight: '700',
   },

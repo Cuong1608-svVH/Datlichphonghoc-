@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useSocket } from '../context/SocketContext';
-import { BookOpen, Shield, User as UserIcon, LogOut, Radio, Calendar } from 'lucide-react';
+import { Shield, User as UserIcon, LogOut, Calendar } from 'lucide-react';
 
 interface NavbarProps {
   currentTab: 'rooms' | 'profile' | 'admin';
@@ -17,119 +16,86 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRegister,
 }) => {
   const { user, logout, isAdmin } = useAuth();
-  const { isConnected } = useSocket();
 
   return (
-    <header className="glass-panel" style={{ margin: '1rem 1.5rem 0', borderRadius: 'var(--radius-lg)' }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0.85rem 1.5rem',
-        flexWrap: 'wrap',
-        gap: '1rem'
-      }}>
-        {/* Logo */}
-        <div
-          onClick={() => setCurrentTab('rooms')}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.75rem',
-            cursor: 'pointer',
-            userSelect: 'none'
-          }}
-        >
-          <div style={{
-            background: 'var(--primary-gradient)',
-            width: '42px',
-            height: '42px',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 0 15px rgba(99, 102, 241, 0.4)'
-          }}>
-            <BookOpen size={24} color="#ffffff" />
-          </div>
-          <div>
-            <div style={{
+    <header
+      className="glass-panel"
+      style={{
+        margin: '1rem 1.5rem 0',
+        borderRadius: 'var(--radius-lg)',
+        backgroundColor: '#ffffff',
+        border: '1px solid var(--border-subtle)',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0.85rem 1.5rem',
+          flexWrap: 'wrap',
+          gap: '1rem',
+        }}
+      >
+        {/* Left Section: Brand Title + Navigation Tabs */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1.75rem', flexWrap: 'wrap' }}>
+          {/* Brand Title (Bỏ icon, chỉ để lại tên booking studyroom) */}
+          <div
+            onClick={() => setCurrentTab('rooms')}
+            style={{
               fontSize: '1.25rem',
               fontWeight: 800,
               letterSpacing: '-0.02em',
-              background: 'linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              fontFamily: 'var(--font-heading)'
-            }}>
-              UniStudy
-            </div>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500, marginTop: '-2px' }}>
-              Booking Room Hub
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation Tabs */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <button
-            onClick={() => setCurrentTab('rooms')}
-            className={`btn btn-sm ${currentTab === 'rooms' ? 'btn-primary' : 'btn-secondary'}`}
-            style={{ borderRadius: 'var(--radius-full)' }}
-          >
-            <Calendar size={16} />
-            Tìm & Đặt Phòng
-          </button>
-
-          {user && (
-            <button
-              onClick={() => setCurrentTab('profile')}
-              className={`btn btn-sm ${currentTab === 'profile' ? 'btn-primary' : 'btn-secondary'}`}
-              style={{ borderRadius: 'var(--radius-full)' }}
-            >
-              <UserIcon size={16} />
-              Lịch Sử & Cá Nhân
-            </button>
-          )}
-
-          {isAdmin && (
-            <button
-              onClick={() => setCurrentTab('admin')}
-              className={`btn btn-sm ${currentTab === 'admin' ? 'btn-primary' : 'btn-secondary'}`}
-              style={{
-                borderRadius: 'var(--radius-full)',
-                background: currentTab === 'admin' ? 'linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%)' : undefined
-              }}
-            >
-              <Shield size={16} />
-              Quản Trị Admin
-            </button>
-          )}
-        </nav>
-
-        {/* Right Section: Socket Status + Auth */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          {/* Real-time Indicator */}
-          <div
-            title={isConnected ? 'Đang kết nối Realtime Socket.io đồng bộ trực tiếp' : 'Mất kết nối máy chủ realtime'}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              padding: '0.35rem 0.75rem',
-              borderRadius: 'var(--radius-full)',
-              background: isConnected ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-              border: `1px solid ${isConnected ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`,
-              fontSize: '0.75rem',
-              fontWeight: 600,
-              color: isConnected ? '#34d399' : '#f87171'
+              color: '#0f172a',
+              fontFamily: 'var(--font-heading)',
+              cursor: 'pointer',
+              userSelect: 'none',
             }}
           >
-            <Radio size={14} className={isConnected ? 'pulse' : ''} />
-            {isConnected ? 'Realtime Live' : 'Offline'}
+            Booking Studyroom
           </div>
 
-          {/* User profile / Auth buttons */}
+          {/* Navigation Tabs (Đẩy 2 element này qua bên trái) */}
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <button
+              onClick={() => setCurrentTab('rooms')}
+              className={`btn btn-sm ${currentTab === 'rooms' ? 'btn-primary' : 'btn-secondary'}`}
+              style={{ borderRadius: 'var(--radius-full)' }}
+            >
+              <Calendar size={15} />
+              Tìm & Đặt Phòng
+            </button>
+
+            {user && (
+              <button
+                onClick={() => setCurrentTab('profile')}
+                className={`btn btn-sm ${currentTab === 'profile' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{ borderRadius: 'var(--radius-full)' }}
+              >
+                <UserIcon size={15} />
+                Lịch Sử & Cá Nhân
+              </button>
+            )}
+
+            {isAdmin && (
+              <button
+                onClick={() => setCurrentTab('admin')}
+                className={`btn btn-sm ${currentTab === 'admin' ? 'btn-primary' : 'btn-secondary'}`}
+                style={{
+                  borderRadius: 'var(--radius-full)',
+                  background: currentTab === 'admin' ? 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)' : undefined,
+                  color: currentTab === 'admin' ? '#ffffff' : undefined,
+                }}
+              >
+                <Shield size={15} />
+                Quản Trị Admin
+              </button>
+            )}
+          </nav>
+        </div>
+
+        {/* Right Section: User Profile / Auth buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <div
@@ -137,24 +103,35 @@ export const Navbar: React.FC<NavbarProps> = ({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '0.5rem',
                   cursor: 'pointer',
-                  padding: '0.25rem 0.5rem',
+                  padding: '0.35rem 0.85rem',
                   borderRadius: 'var(--radius-md)',
-                  background: 'rgba(255, 255, 255, 0.05)'
+                  background: '#f1f5f9',
+                  border: '1px solid var(--border-subtle)',
                 }}
               >
-                <img
-                  src={user.avatar || `https://api.dicebear.com/7.x/bottts/svg?seed=${user.name}`}
-                  alt={user.name}
-                  style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
-                />
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  <div
+                    style={{
+                      fontSize: '0.85rem',
+                      fontWeight: 700,
+                      color: 'var(--text-primary)',
+                      maxWidth: '120px',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
                     {user.name}
                   </div>
-                  <div style={{ fontSize: '0.7rem', color: user.role === 'ADMIN' ? '#f472b6' : '#34d399', fontWeight: 600 }}>
-                    {user.role === 'ADMIN' ? 'Quản trị viên' : 'Sinh viên'}
+                  <div
+                    style={{
+                      fontSize: '0.7rem',
+                      color: user.role === 'ADMIN' ? '#7c3aed' : 'var(--status-available)',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {user.role === 'ADMIN' ? 'Ban Quản Trị' : 'Sinh viên'}
                   </div>
                 </div>
               </div>
@@ -183,3 +160,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { Room } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import { Users, Layers, ShieldAlert, CheckCircle, Calendar, Sparkles } from 'lucide-react';
+import { Users, Layers, ShieldAlert, CheckCircle, Calendar } from 'lucide-react';
 
 interface RoomCardProps {
   room: Room;
@@ -37,16 +37,14 @@ export const RoomCard: React.FC<RoomCardProps> = ({
         overflow: 'hidden',
         transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         border: justUpdated
-          ? '2px solid rgba(99, 102, 241, 0.9)'
+          ? '2px solid #2563eb'
           : room.is_available
-          ? '1px solid rgba(16, 185, 129, 0.25)'
-          : '1px solid var(--border-subtle)',
+          ? '1px solid #e2e8f0'
+          : '1px solid #f1f5f9',
         boxShadow: justUpdated
-          ? '0 0 25px rgba(99, 102, 241, 0.4)'
-          : 'var(--shadow-md)',
-        background: room.is_available
-          ? 'var(--bg-card)'
-          : 'rgba(15, 23, 42, 0.55)',
+          ? '0 0 20px rgba(37, 99, 235, 0.25)'
+          : '0 2px 8px rgba(15, 23, 42, 0.04)',
+        background: room.is_available ? '#ffffff' : '#f8fafc',
       }}
     >
       {/* Image Header with Badges */}
@@ -59,9 +57,9 @@ export const RoomCard: React.FC<RoomCardProps> = ({
             height: '100%',
             objectFit: 'cover',
             transition: 'transform 0.5s ease',
-            filter: room.status === 'MAINTENANCE' || room.is_booked ? 'grayscale(35%) brightness(0.85)' : 'none',
+            filter: room.status === 'MAINTENANCE' || room.is_booked ? 'grayscale(25%) contrast(0.95)' : 'none',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.06)')}
+          onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
           onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
         />
 
@@ -71,15 +69,16 @@ export const RoomCard: React.FC<RoomCardProps> = ({
             position: 'absolute',
             top: '12px',
             left: '12px',
-            background: 'rgba(0, 0, 0, 0.75)',
+            background: 'rgba(255, 255, 255, 0.92)',
             backdropFilter: 'blur(8px)',
-            color: '#ffffff',
+            color: '#0f172a',
             padding: '4px 10px',
             borderRadius: 'var(--radius-sm)',
             fontSize: '0.75rem',
             fontWeight: 800,
             letterSpacing: '0.05em',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
+            border: '1px solid rgba(226, 232, 240, 0.9)',
+            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.06)',
           }}
         >
           {room.code}
@@ -88,17 +87,17 @@ export const RoomCard: React.FC<RoomCardProps> = ({
         {/* Status Badge */}
         <div style={{ position: 'absolute', top: '12px', right: '12px' }}>
           {room.status === 'MAINTENANCE' ? (
-            <span className="badge badge-maintenance">
+            <span className="badge badge-maintenance" style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
               <ShieldAlert size={12} />
               Đang bảo trì
             </span>
           ) : room.is_booked ? (
-            <span className="badge badge-booked">
+            <span className="badge badge-booked" style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
               <span className="pulse-dot booked" />
               Đã có người đặt
             </span>
           ) : (
-            <span className="badge badge-available">
+            <span className="badge badge-available" style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.06)' }}>
               <span className="pulse-dot available pulse" />
               Có thể đặt ngay
             </span>
@@ -115,11 +114,29 @@ export const RoomCard: React.FC<RoomCardProps> = ({
             gap: '0.5rem',
           }}
         >
-          <span className="badge badge-floor" style={{ backdropFilter: 'blur(6px)' }}>
+          <span
+            className="badge badge-floor"
+            style={{
+              background: 'rgba(255, 255, 255, 0.92)',
+              color: '#1d4ed8',
+              border: '1px solid rgba(191, 219, 254, 0.9)',
+              backdropFilter: 'blur(6px)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+            }}
+          >
             <Layers size={12} />
             Tầng {room.floor}
           </span>
-          <span className="badge badge-capacity" style={{ backdropFilter: 'blur(6px)' }}>
+          <span
+            className="badge badge-capacity"
+            style={{
+              background: 'rgba(255, 255, 255, 0.92)',
+              color: '#334155',
+              border: '1px solid rgba(226, 232, 240, 0.9)',
+              backdropFilter: 'blur(6px)',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+            }}
+          >
             <Users size={12} />
             {room.capacity} chỗ ngồi
           </span>
@@ -129,7 +146,7 @@ export const RoomCard: React.FC<RoomCardProps> = ({
       {/* Card Body */}
       <div style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
         <div>
-          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, marginBottom: '0.5rem', color: '#ffffff' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '0.45rem', color: 'var(--text-primary)' }}>
             {room.name}
           </h3>
 
@@ -145,17 +162,17 @@ export const RoomCard: React.FC<RoomCardProps> = ({
               justifyContent: 'space-between',
               padding: '0.55rem 0.75rem',
               borderRadius: 'var(--radius-sm)',
-              background: 'rgba(255, 255, 255, 0.03)',
-              border: '1px solid var(--border-subtle)',
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
               fontSize: '0.8rem',
               marginBottom: '1.25rem',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-muted)' }}>
-              <Calendar size={14} />
-              <span>Khung giờ:</span>
+              <Calendar size={14} color="#2563eb" />
+              <span style={{ fontWeight: 600 }}>Khung giờ:</span>
             </div>
-            <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>
+            <span style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
               {selectedSlotName}
             </span>
           </div>
@@ -165,14 +182,16 @@ export const RoomCard: React.FC<RoomCardProps> = ({
             <div
               style={{
                 fontSize: '0.78rem',
-                color: isMyBooking ? '#34d399' : '#f87171',
-                background: isMyBooking ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                color: isMyBooking ? 'var(--status-available)' : 'var(--status-booked)',
+                background: isMyBooking ? 'var(--status-available-bg)' : 'var(--status-booked-bg)',
+                border: `1px solid ${isMyBooking ? 'var(--status-available-border)' : 'var(--status-booked-border)'}`,
                 padding: '0.45rem 0.75rem',
                 borderRadius: 'var(--radius-sm)',
                 marginBottom: '1rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.4rem',
+                fontWeight: 600,
               }}
             >
               <CheckCircle size={14} />
@@ -186,20 +205,19 @@ export const RoomCard: React.FC<RoomCardProps> = ({
         {/* Action Button */}
         <div>
           {room.status === 'MAINTENANCE' ? (
-            <button className="btn btn-secondary" style={{ width: '100%', opacity: 0.6 }} disabled>
+            <button className="btn btn-secondary" style={{ width: '100%', opacity: 0.7 }} disabled>
               Phòng Đang Bảo Trì
             </button>
           ) : room.is_booked ? (
-            <button className="btn btn-secondary" style={{ width: '100%', opacity: 0.55, cursor: 'not-allowed' }} disabled>
+            <button className="btn btn-secondary" style={{ width: '100%', opacity: 0.65, cursor: 'not-allowed' }} disabled>
               {isMyBooking ? 'Bạn Đã Đặt Ca Này' : 'Đã Có Người Đặt Ca Này'}
             </button>
           ) : (
             <button
               onClick={() => onBook(room)}
               className="btn btn-primary"
-              style={{ width: '100%' }}
+              style={{ width: '100%', fontWeight: 700 }}
             >
-              <Sparkles size={16} />
               Đặt Phòng Ngay
             </button>
           )}
